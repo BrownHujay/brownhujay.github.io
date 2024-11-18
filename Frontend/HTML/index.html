@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blob Game</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+</head>
+<body>
+    <!--Hamburger Menu-->
+    <div class="hamburgerMenu">
+        <button id="toggleMenu" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+    <!--Hidden Navigation Menu-->
+    <nav id="menu" class="menu">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="scoreboard.html">Scoreboard</a></li>
+        </ul>
+    </nav>
+    <!--Game Canvas and Score-->
+    
+    <div id="display">
+        Score: <span id="scoreboard">0</span>
+        Highscore: <span id="highscore">0</span>
+        Regular Ammo (Left Click): <span id="regAmmoCount">20</span>
+        Warp Ammo (Left Click + 1): <span id="travelAmmoCount">3</span>
+        Rift Charge (Left Click + 2): <span id="sChargeCount">2</span>
+        Gravity Well (Left Click + 3): <span id="wellCount">1</span>
+        Inverse Well (Left Click + 4): <span id="revWellCount">1</span>
+    </div>
+    
+    <canvas id="gameCanvas"></canvas>
+    <!--Game Script-->
+    <script type="text/javascript" src="../Javascript/script.js"></script>
+    <!--Menu Script-->
+    <script type="text/javascript" src="../Javascript/menu.js"></script>
+</body>
+</html>
