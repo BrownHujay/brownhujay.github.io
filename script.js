@@ -198,13 +198,17 @@ class GravityWell extends Blob {
         // Check if the well has expired
         if (timestamp - this.startTime > 10000) {
             gravitywells.splice(gravitywells.indexOf(this), 1); // Remove expired well
+            
             return true;
+        
         } else {
+            // Draw the well
+            this.draw();
+
             return false;
+        
         }
 
-        // Draw the well
-        this.draw()
     }
 }
 
