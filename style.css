@@ -108,3 +108,8 @@ canvas {
 .menu ul li a:hover {
   background-color: #444;
 }
+
+#getNameButton :disabled {
+  background: grey;
+  cursor: not-allowed;
+}

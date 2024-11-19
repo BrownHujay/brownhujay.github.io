@@ -360,33 +360,33 @@ window.addEventListener('keyup', (e) => {
     }
 });
 
-
+let noShoot = false;
 
 // Mouse event listener for shooting
 window.addEventListener('mousedown', (e) => {
     const canvasRect = canvas.getBoundingClientRect();
     const mouseX = e.clientX - canvasRect.left;
     const mouseY = e.clientY - canvasRect.top;
-
-    // Determine which ammo to shoot
-    if (isOnePressed && travel_ammo > 0) {
-        // 1 key is pressed -> Shoot Travel Ammo
-        player.shoot(mouseX, mouseY, 1); 
-    } else if (isTwoPressed && bomb_count > 0) {
-        // 2 key is pressed -> Shoot Bomb
-        player.shoot(mouseX, mouseY, 2); 
-    } else if (isThreePressed && gravity_well_count > 0) {
-        // 3 key is pressed -> Gravity Well
-        player.shoot(mouseX, mouseY, 3)
-    } else if (isFourPressed && reverse_gravity_well_count > 0) {
-        // 3 key is pressed -> Reverse Gravity Well
-        player.shoot(mouseX, mouseY, 4); 
-    } else if (reg_ammo > 0) {
-        // Default -> Shoot Regular Ammo
-        player.shoot(mouseX, mouseY, 0); 
+    if (noShoot === true){
+        // Determine which ammo to shoot
+        if (isOnePressed && travel_ammo > 0) {
+            // 1 key is pressed -> Shoot Travel Ammo
+            player.shoot(mouseX, mouseY, 1); 
+        } else if (isTwoPressed && bomb_count > 0) {
+            // 2 key is pressed -> Shoot Bomb
+            player.shoot(mouseX, mouseY, 2); 
+        } else if (isThreePressed && gravity_well_count > 0) {
+            // 3 key is pressed -> Gravity Well
+            player.shoot(mouseX, mouseY, 3)
+        } else if (isFourPressed && reverse_gravity_well_count > 0) {
+            // 3 key is pressed -> Reverse Gravity Well
+            player.shoot(mouseX, mouseY, 4); 
+        } else if (reg_ammo > 0) {
+            // Default -> Shoot Regular Ammo
+            player.shoot(mouseX, mouseY, 0); 
+        }
     }
 });
-
 
 
 
@@ -626,5 +626,49 @@ function gameLoop(timestamp) {
     //redraw
     requestAnimationFrame(gameLoop);
 }
-//start game
-requestAnimationFrame(gameLoop);
+// Get the input field, button, and display elements
+const nameInput = document.getElementById('personName');
+const button = document.getElementById('getNameButton');
+const displayName = document.getElementById('displayName');
+
+// Check local storage for a saved name
+let savedName = localStorage.getItem("userName");
+
+if (savedName) {
+    // If name exists, display it and disable the button
+    displayName.textContent = `Welcome back, ${savedName}!`;
+    button.disabled = true;
+    nameInput.value = savedName; // Prefill the input with the saved name
+    
+    requestAnimationFrame(gameLoop);
+    noShoot = true;
+    
+
+} else {
+    // If no name exists, enable the button
+    button.disabled = false;
+}
+
+// Add a click event to the button
+button.addEventListener('click', () => {
+    // Get the value from the input field
+    let name = nameInput.value.trim();
+
+    if (name) {
+        // Save the name to local storage
+        localStorage.setItem("userName", name);
+
+        // Display the name and start the game
+        displayName.textContent = `Hello, ${name}!`;
+        console.log("Username:", name);
+        // Disable the button after saving
+        button.disabled = true;
+
+        requestAnimationFrame(gameLoop);
+        noShoot = true;
+    } else {
+        displayName.textContent = `Please enter a valid name.`;
+    }
+});
+
+
