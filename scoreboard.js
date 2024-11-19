@@ -3,17 +3,8 @@ let scores = [];
 
 
 document.addEventListener("DOMContentLoaded", function() {
-    // Fetch the IP address from the API
-    fetch("https://api.ipify.org?format=json")
-        .then(response => response.json())
-        .then(ip => {
-            console.log(ip.ip);
-        })
-        .catch(error => {
-            console.error("Error fetching IP address:", error);
-        });
     
-    fetch("http://127.0.0.1:5000/scoreboard/get")
+    fetch("https://brownhujay.pythonanywhere.com/scoreboard/get")
         .then(response => response.json())
         .then(userData => {
             console.log(userData);

@@ -466,7 +466,7 @@ function updateHighscore(newScore) {
                 };
 
                 // POST the player data to the backend
-                return fetch('http://localhost:5000/scoreboard/post', {
+                return fetch('https://brownhujay.pythonanywhere.com/scoreboard/post', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
