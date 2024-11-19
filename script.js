@@ -198,7 +198,9 @@ class GravityWell extends Blob {
         // Check if the well has expired
         if (timestamp - this.startTime > 10000) {
             gravitywells.splice(gravitywells.indexOf(this), 1); // Remove expired well
-            return;
+            return true;
+        } else {
+            return false;
         }
 
         // Draw the well
@@ -582,12 +584,12 @@ function gameLoop(timestamp) {
 
         // Apply gravity wells to all entities
     gravitywells.forEach((well) => {
-        well.update(timestamp);
-        
-        [player, ...projectiles, ...bombs, ...enemies, ...on_ground_ammo].forEach((entity) => {
-            well.applyForce(entity);
-        });
-
+        if (well.update(timestamp) === false) {  
+            
+            [player, ...projectiles, ...bombs, ...enemies, ...on_ground_ammo].forEach((entity) => {
+                well.applyForce(entity);
+            }); 
+        }
     });
     
     bombs.forEach((bomb) => bomb.update(timestamp)); //small loop for bombs
