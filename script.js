@@ -296,6 +296,7 @@ let gravity_well_count = 1;
 let reverse_gravity_well_count = 1;
 let on_ground_ammo = [];
 let selectedAmmo = 0;
+let playerName = "";
 
 
 // Mouse event listener for shooting
@@ -467,7 +468,7 @@ function updateHighscore(newScore) {
                 const playerData = {
                     id: userId,
                     ip: ip, // Include the IP address
-                    name: "kota", // replace later pls
+                    name:  playerName, 
                     score: highscore
                 };
 
@@ -661,6 +662,9 @@ button.addEventListener('click', () => {
         // Display the name and start the game
         displayName.textContent = `Hello, ${name}!`;
         console.log("Username:", name);
+        playerName = name;
+        
+        
         // Disable the button after saving
         button.disabled = true;
 
