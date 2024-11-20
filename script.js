@@ -296,7 +296,6 @@ let gravity_well_count = 1;
 let reverse_gravity_well_count = 1;
 let on_ground_ammo = [];
 let selectedAmmo = 0;
-let playerName = "";
 
 
 // Mouse event listener for shooting
@@ -468,7 +467,7 @@ function updateHighscore(newScore) {
                 const playerData = {
                     id: userId,
                     ip: ip, // Include the IP address
-                    name:  playerName, 
+                    name:  savedName, 
                     score: highscore
                 };
 
@@ -497,7 +496,6 @@ function updateHighscore(newScore) {
 function reset() {
     //update leaderboard with highscore
     updateHighscore(score);
-    
     enemies = [];
     projectiles = [];
     on_ground_ammo = [];
