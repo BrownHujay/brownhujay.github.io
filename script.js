@@ -455,38 +455,35 @@ function updateHighscore(newScore) {
         // Update high score in localStorage
         localStorage.setItem("highscore", highscore.toString());
         console.log("New high score:", highscore);
+        // Send updated score to backend
+        const playerData = {
+            id: userId,
+            name:  savedName, 
+            score: highscore
+        };
 
-        // Fetch the IP address 
-        fetch("https://api.ipify.org?format=json")
-            .then(response => response.json())
-            .then(ipData => {
-                const ip = ipData.ip; // Extract the IP address from the response
-                console.log("Fetched IP address:", ip);
+        try {
+            JSON.stringify(playerData);
+        } catch (error) {
+            console.error("Invalid JSON format:", error);
+        }
+        console.log(playerData);
 
-                // Send updated score to backend
-                const playerData = {
-                    id: userId,
-                    ip: ip, // Include the IP address
-                    name:  savedName, 
-                    score: highscore
-                };
-
-                // POST the player data to the backend
-                return fetch('https://brownhujay.pythonanywhere.com/scoreboard/post', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(playerData)
-                });
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log("High score updated on backend:", data);
-            })
-            .catch(error => {
-                console.error("Error updating high score:", error);
-            });
+        // POST the player data to the backend
+        return fetch('https://brownhujay.pythonanywhere.com/scoreboard/post', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(playerData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log("High score updated on backend:", data);
+        })
+        .catch(error => {
+            console.error("Error updating high score:", error);
+        });
     }
 }
 
@@ -632,6 +629,7 @@ const displayName = document.getElementById('displayName');
 
 // Check local storage for a saved name
 let savedName = localStorage.getItem("userName");
+console.log(savedName);
 
 if (savedName) {
     // If name exists, display it and disable the button
