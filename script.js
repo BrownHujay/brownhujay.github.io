@@ -455,6 +455,7 @@ function updateHighscore(newScore) {
         // Update high score in localStorage
         localStorage.setItem("highscore", highscore.toString());
         console.log("New high score:", highscore);
+        const savedName = localStorage.getItem("userName");
         // Send updated score to backend
         const playerData = {
             id: userId,
@@ -628,7 +629,7 @@ const button = document.getElementById('getNameButton');
 const displayName = document.getElementById('displayName');
 
 // Check local storage for a saved name
-let savedName = localStorage.getItem("userName");
+const savedName = localStorage.getItem("userName");
 console.log(savedName);
 
 if (savedName) {
