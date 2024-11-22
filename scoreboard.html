@@ -7,9 +7,30 @@
     <link rel="stylesheet" href="scoreboard.css">
 </head>
 <body>
-    <div id="leaderboard" class="container">
-        <!--Scores Will Be Updated Over Time-->
+    <div class="leaderboard-container">
+        <div id="leaderboard" class="container">
+            <!--Scores Will Be Updated Over Time-->
+        </div>
+        <!--Hamburger Menu-->
+        <div class="hamburgerMenu">
+            <button id="toggleMenu" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
     </div>
+    <!--Hidden Navigation Menu-->
+    <nav id="menu" class="menu">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="scoreboard.html">Scoreboard</a></li>
+        </ul>
+    </nav>
+    
+    
     <script type="text/javascript" src="scoreboard.js"></script>
+    <script type="text/javascript" src="menu.js"></script>
 </body>
 </html>

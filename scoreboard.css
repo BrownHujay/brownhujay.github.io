@@ -1,9 +1,88 @@
 #container {
   width: 600px;
   height: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.leaderboard-container {
+  position: relative;
+}
+
+/* Hamburger Menu */
+.hamburgerMenu {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+/* Individual bars */
+.hamburgerMenu button {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.hamburgerMenu span {
+  display: block;
+  width: 40px;
+  height: 2px;
+  background-color: #333;
+  border-radius: 1px;
+  margin-bottom: 10px;
+}
+
+/* Hidden Menu */
+.menu {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 250px;
+  height: 100%;
+  color: white;
+  z-index: 5;
+  padding-top: 50px;
+  transition: transform 0.5s;
+}
+
+.menu.open {
+  display: block;
+  transform: translateX(0);
+}
+
+.menu:not(.open) {
+  transform: translateX(100%);
+}
+
+.menu ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.menu ul li {
+  padding: 15px;
+  text-align: center;
+}
+
+.menu ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.menu ul li a:hover {
+  background-color: #444;
 }
 
 .row {
+  margin-top: 20;
   position: relative;
   display: block;
   width: 100%;
@@ -37,3 +116,4 @@
 .row:nth-child(3) {
   background: #cd7f32;
 }
+
