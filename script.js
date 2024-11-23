@@ -597,7 +597,7 @@ function gameLoop(timestamp) {
     gravitywells.forEach((well) => {
         if (well.update(timestamp) === false) {  
             
-            [...projectiles, ...bombs, ...enemies, ...on_ground_ammo].forEach((entity) => {
+            [player, ...projectiles, ...bombs, ...enemies, ...on_ground_ammo].forEach((entity) => {
                 well.applyForce(entity);
             }); 
         }
