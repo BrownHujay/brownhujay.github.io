@@ -1,4 +1,3 @@
-//beautiful stack overflow code :)
 let scores = [];
 
 
@@ -11,7 +10,6 @@ document.addEventListener("DOMContentLoaded", function() {
             for(let i=0; i<userData.length; i++) {
                 scores.push({name: userData[i]['name'], score: userData[i]['score']});
             }
-        console.log(JSON.stringify(scores));
         updateLeaderboardView();
         })
 });
@@ -22,39 +20,33 @@ function updateLeaderboardView() {
     let leaderboard = document.getElementById("leaderboard");
     leaderboard.innerHTML = "";
 
-    scores.sort(function(a, b){ return b.score - a.score  });
-    let elements = []; // we'll need created elements to update colors later on
+    scores.sort(function(a, b){ return b.score - a.score}); //JS sort is weird where it needs a function to sort :( 
+    let elements = []; // created elements to update score
+
     // create elements for each player
     for(let i=0; i<scores.length; i++) {
-        let name = document.createElement("div");
-        let score = document.createElement("div");
-        name.classList.add("name");
+        let name = document.createElement("div"); //create a div for name
+        let score = document.createElement("div"); //create a div for score
+        
+        name.classList.add("name"); //add the class names and stuff
         score.classList.add("score");
-        name.innerText = scores[i].name;
+        name.innerText = scores[i].name; //give the div it's info
         score.innerText = scores[i].score;
 
-        let scoreRow = document.createElement("div");
-        scoreRow.classList.add("row");
-        scoreRow.appendChild(name);
+        let scoreRow = document.createElement("div"); //cerate the row to hold other info
+        scoreRow.classList.add("row"); //label it
+        scoreRow.appendChild(name); // give info to div
         scoreRow.appendChild(score);
         leaderboard.appendChild(scoreRow);
 
-        elements.push(scoreRow);
+        elements.push(scoreRow); //add div to array.
 
     }
 
     let colors = ["gold", "silver", "#cd7f32"];
     for(let i=0; i < Math.min(3, elements.length); i++) {
-        elements[i].style.color = colors[i];
+        elements[i].style.color = colors[i]; // for the first three in list (top 3 scores because previously sorted)
     }
 }
 
 
-
-function randomize() {
-    for(var i=0; i<scores.length; i++) {
-        scores[i].score = Math.floor(Math.random() * (600 - 300 + 1)) + 300;
-    }
-    // when your data changes, call updateLeaderboardView
-    updateLeaderboardView();
-}

@@ -1,14 +1,10 @@
 #container {
+  margin-top: 20px;
   width: 600px;
   height: auto;
   position: relative;
   z-index: 1;
 }
-
-.leaderboard-container {
-  position: relative;
-}
-
 /* Hamburger Menu */
 .hamburgerMenu {
   position: absolute;

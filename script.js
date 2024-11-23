@@ -287,7 +287,10 @@ let bombs = [];
 let gravitywells = [];
 let enemies = [];
 let spawnInterval = 2000;
+let bossInterval = 50000;
 let lastSpawn = 0;
+let lastBoss = 0;
+let difficulty = 0;
 let score = 0;
 let reg_ammo = 20;
 let travel_ammo = 3;
@@ -296,7 +299,6 @@ let gravity_well_count = 1;
 let reverse_gravity_well_count = 1;
 let on_ground_ammo = [];
 let selectedAmmo = 0;
-
 
 // Mouse event listener for shooting
 
@@ -494,6 +496,7 @@ function updateHighscore(newScore) {
 function reset() {
     //update leaderboard with highscore
     updateHighscore(score);
+    difficulty = 0;
     enemies = [];
     projectiles = [];
     on_ground_ammo = [];
@@ -536,6 +539,13 @@ function gameLoop(timestamp) {
     if (timestamp - lastSpawn > spawnInterval){
         spawnEnemy();
         lastSpawn = timestamp;
+        if (timestamp - lastBoss > bossInterval) {
+            for(let i = 0; i<(3+difficulty); i++) {
+                spawnEnemy();
+            }
+            lastBoss = timestamp;
+            difficulty += 1;
+        }
     }
 
 
@@ -587,7 +597,7 @@ function gameLoop(timestamp) {
     gravitywells.forEach((well) => {
         if (well.update(timestamp) === false) {  
             
-            [player, ...projectiles, ...bombs, ...enemies, ...on_ground_ammo].forEach((entity) => {
+            [...projectiles, ...bombs, ...enemies, ...on_ground_ammo].forEach((entity) => {
                 well.applyForce(entity);
             }); 
         }
