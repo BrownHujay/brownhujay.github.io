@@ -2,14 +2,16 @@ let scores = [];
 
 
 document.addEventListener("DOMContentLoaded", function() {
-    
-    fetch("https://brownhujay.pythonanywhere.com/scoreboard/get")
-        .then(response => response.json())
-        .then(userData => {
-            console.log(userData);
-            for(let i=0; i<userData.length; i++) {
-                scores.push({name: userData[i]['name'], score: userData[i]['score']});
-            }
+     
+    fetch("https://brownhujay.pythonanywhere.com/scoreboard/get", {
+        mode: 'cors'
+    })
+    .then(response => response.json())
+    .then(userData => {
+        console.log(userData);
+        for(let i=0; i<userData.length; i++) {
+            scores.push({name: userData[i]['name'], score: userData[i]['score']});
+        }
         updateLeaderboardView();
         })
 });

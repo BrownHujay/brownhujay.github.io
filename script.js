@@ -292,7 +292,7 @@ let lastSpawn = 0;
 let lastBoss = 0;
 let difficulty = 0;
 let score = 0;
-let reg_ammo = 20;r
+let reg_ammo = 20;
 let travel_ammo = 3;
 let bomb_count = 2;
 let gravity_well_count = 1;
@@ -301,8 +301,6 @@ let on_ground_ammo = [];
 let selectedAmmo = 0;
 
 // Mouse event listener for shooting
-
-
 // Track if the spacebar is pressed
 let isOnePressed = false;
 let isTwoPressed = false;
@@ -497,6 +495,7 @@ function reset() {
     //update leaderboard with highscore
     updateHighscore(score);
     difficulty = 0;
+    lastBoss = 0;
     enemies = [];
     projectiles = [];
     on_ground_ammo = [];
@@ -579,7 +578,7 @@ function gameLoop(timestamp) {
         projectiles.forEach((projectile, projIndex) => {
             const distToProjectile = Math.hypot(projectile.x - enemy.x, projectile.y-enemy.y);
             if (distToProjectile - enemy.radius - projectile.radius < 0) {
-                setTimeout(() => { //timeout to not break the code for some reason
+                setTimeout(() => { //timeout to not break the code & stuff
                     score += 1;
                     
                     document.getElementById("scoreboard").textContent = score; // Update scoreboard, changing html rather than javascript variable.
@@ -681,5 +680,3 @@ button.addEventListener('click', () => {
         displayName.textContent = `Please enter a valid name.`;
     }
 });
-
-
